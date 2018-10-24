@@ -552,7 +552,7 @@
     <!-- end nav -->
 
     <?php
-        include_once "$view.view.php";
+    include_once "$view.view.php";
     ?>
 
     <!-- Footer -->
@@ -612,7 +612,7 @@
           <div class="col-sm-6 col-md-4 col-xs-12 col-lg-3">
             <div class="footer-logo">
               <a href="index-2.html">
-                <img src="images/footer-logo.png" alt="fotter logo">
+                <img src="public/source/images/footer-logo.png" alt="fotter logo">
               </a>
             </div>
             <p>Lorem Ipsum is simply dummy text of the print and typesetting industry.</p>
@@ -730,22 +730,22 @@
                 <ul>
                   <li>
                     <a href="#">
-                      <img title="Visa" alt="Visa" src="images/visa.png">
+                      <img title="Visa" alt="Visa" src="public/source/images/visa.png">
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <img title="Paypal" alt="Paypal" src="images/paypal.png">
+                      <img title="Paypal" alt="Paypal" src="public/source/images/paypal.png">
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <img title="Discover" alt="Discover" src="images/discover.png">
+                      <img title="Discover" alt="Discover" src="public/source/images/discover.png">
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <img title="Master Card" alt="Master Card" src="images/master-card.png">
+                      <img title="Master Card" alt="Master Card" src="public/source/images/master-card.png">
                     </a>
                   </li>
                 </ul>
@@ -820,10 +820,12 @@
           spinner: "spinner4"
         });
     });
+
+    $(document).ready(function(){
+        $('.mega-menu-category').hide()
+    })
   </script>
-
-
-
+  
 </body>
 
 </html>
