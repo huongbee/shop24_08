@@ -7,7 +7,7 @@
         <?php foreach($data['slide'] as $slide):?>
         <li data-transition="slidehorizontal" data-slotamount="5" data-masterspeed="700">
           <!-- MAIN IMAGE -->
-          <img src="public/source/images/slider/slider-img1.jpg" alt="slidebg1" data-bgfit="cover" data-bgposition="center center"
+          <img src="public/source/images/slider/<?=$slide->image?>" alt="slidebg1" data-bgfit="cover" data-bgposition="center center"
             data-bgrepeat="no-repeat">
           <!-- LAYERS -->
           <!-- LAYER NR. 1 -->
