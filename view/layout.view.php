@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Favicon  -->
-  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="public/source/favicon.ico">
 
   <!-- Google Fonts -->
   <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700italic,700,400italic' rel='stylesheet' type='text/css'>
@@ -114,7 +114,7 @@
               <!-- Header Logo -->
               <div class="logo">
                 <a title="e-commerce" href="index.html">
-                  <img alt="responsive theme logo" src="images/logo.png">
+                  <img alt="responsive theme logo" src="public/source/images/logo.png">
                 </a>
               </div>
               <!-- End Header Logo -->
