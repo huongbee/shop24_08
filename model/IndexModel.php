@@ -16,6 +16,7 @@ class IndexModel extends DBConnect{
                 WHERE p.status=1";
         return $this->loadMoreRow($sql);
     }
+    
 }
 
 

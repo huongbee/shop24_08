@@ -1,0 +1,10 @@
+RewriteEngine On
+
+ErrorDocument 404 /shop2408/404.html
+ErrorDocument 403 /shop2408/404.html
+
+# block user access public/source/index.html
+RewriteRule ^/?public\/source\/index\.html$ - [F,L]
+RewriteRule ^/?test.txt$ - [F,L]
+
+

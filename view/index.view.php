@@ -85,7 +85,7 @@
                           <div class="item-info">
                             <div class="info-inner">
                               <div class="item-title">
-                                <a title="Ipsums Dolors Untra" href="single_product.html"><?=$product->name?></a>
+                                <a title="Ipsums Dolors Untra" href="<?=$product->id.'-'.$product->url?>.html"><?=$product->name?></a>
                               </div>
                               <div class="item-content">
                                 <div class="item-price">
