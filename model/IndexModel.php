@@ -18,11 +18,16 @@ class IndexModel extends DBConnect{
     }
 
     function selectBestSeller(){
-        $sql = "SELECT id_product, sum(quantity) as total
-                FROM `bill_detail`  
+        $sql = "SELECT p.*, u.url as url, sum(quantity) as total
+                FROM `bill_detail` d
+                INNER JOIN products p
+                ON d.id_product = p.id
+                INNER JOIN page_url u
+                ON p.id_url = u.id
                 GROUP BY id_product
                 ORDER BY total DESC
                 LIMIT 0,10";
+        return $this->loadMoreRow($sql);
     }
     
 }
