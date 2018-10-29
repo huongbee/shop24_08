@@ -11,8 +11,8 @@ class DetailProductController extends BaseController{
 
         $model = new DetailProductModel;
         $p = $model->selectProductById($id,$url);
-        var_dump($p);
-        die;
+        // var_dump($p);
+        // die;
 
         return $this->loadView('detail-product');
     }
