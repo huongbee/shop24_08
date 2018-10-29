@@ -16,6 +16,14 @@ class IndexModel extends DBConnect{
                 WHERE p.status=1";
         return $this->loadMoreRow($sql);
     }
+
+    function selectBestSeller(){
+        $sql = "SELECT id_product, sum(quantity) as total
+                FROM `bill_detail`  
+                GROUP BY id_product
+                ORDER BY total DESC
+                LIMIT 0,10";
+    }
     
 }
 
