@@ -10,11 +10,18 @@ class DetailProductController extends BaseController{
         $id = $_GET['id'];
 
         $model = new DetailProductModel;
-        $p = $model->selectProductById($id,$url);
-        // var_dump($p);
-        // die;
-
-        return $this->loadView('detail-product');
+        $product = $model->selectProductById($id,$url);
+        if(!$product){
+            //return $this->loadView('404','404 Not Found!');
+            header('Location:404.html');
+            return;
+        }
+        $title = $product->name;
+        // print_r($product);die;
+        $data = [
+            'product'=>$product
+        ];
+        return $this->loadView('detail-product',$title,$data);
     }
 }
 
