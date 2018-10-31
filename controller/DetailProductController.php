@@ -17,9 +17,13 @@ class DetailProductController extends BaseController{
             return;
         }
         $title = $product->name;
-        // print_r($product);die;
+        $idType = trim($product->id_type);
+        $idProduct = (int)$product->id;
+        $relatedProducts = $model->selectRelatedProduct($idType, $idProduct);
+        // print_r($relatedProducts);die;
         $data = [
-            'product'=>$product
+            'product'=>$product,
+            'relatedProducts'=>$relatedProducts
         ];
         return $this->loadView('detail-product',$title,$data);
     }

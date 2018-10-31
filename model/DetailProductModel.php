@@ -21,6 +21,19 @@ class DetailProductModel extends DBConnect{
                 AND url = '$url'";
         return $this->loadOneRow($sql);
     }
+
+    //name type 1 loai ip
+    // idtypes 
+    //in (1,33,5)
+    function selectRelatedProduct($idType, $idProduct){
+        $sql = "SELECT p.*, u.url as url
+                FROM products p
+                INNER JOIN page_url u
+                ON p.id_url = u.id
+                WHERE id_type = $idType
+                AND p.id <> $idProduct";
+        return $this->loadMoreRow($sql);
+    }
 }
 
 
