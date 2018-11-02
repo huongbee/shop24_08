@@ -189,7 +189,7 @@
                   <ul class="nav">
                     <?php foreach($categories as $item):?>
                     <li class="nosub">
-                      <a href="shop_grid.html">
+                      <a href="<?=$item->url?>">
                         <i class="icon fa <?=$item->icon?>"></i> <?=$item->name?></a>
                     </li>
                     <?php endforeach?>

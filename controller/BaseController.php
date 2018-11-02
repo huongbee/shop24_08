@@ -2,7 +2,7 @@
 include_once 'model/TypeProductModel.php';
 
 class BaseController{
-
+    
 
     function loadView(string $view='index', string $title='Home', array $data = []){
         $model = new TypeProductModel;
