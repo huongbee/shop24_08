@@ -22,10 +22,15 @@ class TypeProductController extends BaseController{
         else{
             $page = 1;
         }
-        // echo $page; 
-        // die;
-        // $position = ****;
-        $products = $model->selectProductById($type->id);
+        /**
+         * page = 1 => 0,12
+         * page = 2 => 12,12 
+         * page = 3 => 24,12
+         */
+        $itemPerPage = 12;
+        $position = ($page-1)*$itemPerPage;
+
+        $products = $model->selectProductById($type->id,$position,$itemPerPage);
         $data = [
             'type'=>$type,
             'products'=>$products
