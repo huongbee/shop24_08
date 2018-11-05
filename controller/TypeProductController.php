@@ -16,14 +16,14 @@ class TypeProductController extends BaseController{
             return;
         }
         // get product by type
-        if(isset($_GET['page']) && $_GET['page']>0 && is_numeric($_GET['page'])){
+        if(isset($_GET['page']) && $_GET['page']!=0){
             $page = (int) $_GET['page'];
         }
         else{
             $page = 1;
         }
-        echo $page; 
-        die;
+        // echo $page; 
+        // die;
         // $position = ****;
         $products = $model->selectProductById($type->id);
         $data = [
