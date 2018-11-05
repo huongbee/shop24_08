@@ -9,7 +9,6 @@ class TypeProductController extends BaseController{
         $model = new TypeProductModel;
         // c1
         // $type = $model->selectCategoriesByUrl($urlType);
-
         //c2
         $type = $model->selectCategories($urlType);
         if(!$type){
@@ -17,8 +16,21 @@ class TypeProductController extends BaseController{
             return;
         }
         // get product by type
-
-        return $this->loadView('type-product');
+        if(isset($_GET['page']) && $_GET['page']>0 && is_numeric($_GET['page'])){
+            $page = (int) $_GET['page'];
+        }
+        else{
+            $page = 1;
+        }
+        echo $page; 
+        die;
+        // $position = ****;
+        $products = $model->selectProductById($type->id);
+        $data = [
+            'type'=>$type,
+            'products'=>$products
+        ];
+        return $this->loadView('type-product',$type->name,$data);
     }
 }
 
