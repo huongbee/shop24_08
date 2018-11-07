@@ -31,12 +31,36 @@ class TypeProductController extends BaseController{
         $position = ($page-1)*$itemPerPage;
 
         $products = $model->selectProductById($type->id,$position,$itemPerPage);
+        $countProduct = $model->selectProductById($type->id);
+        $totalProduct = count($countProduct); // 60
+        // 500/12 = ceil(42,3) =>43 
+
+        /**
+         * sotrang hthi = 11
+         * trang htai = 12
+         * start  = 12 - (11-1)/2 = 7
+         * end    = 12 + (11-1)/2 = 17
+         */
         $data = [
             'type'=>$type,
             'products'=>$products
         ];
         return $this->loadView('type-product',$type->name,$data);
     }
+/*
+    SELECT p.*, u.url
+    FROM products p 
+    INNER JOIN page_url u
+    ON p.id_url = u.id
+    WHERE id_type = 6 LIMIT 12,12
+
+    SELECT p.*, u.url
+    FROM products p 
+    INNER JOIN page_url u
+    ON p.id_url = u.id
+    WHERE id_type = 6
+
+*/
 }
 
 

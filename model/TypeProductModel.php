@@ -24,14 +24,23 @@ class TypeProductModel extends DBConnect{
         return $this->loadOneRow($sql);
     }
 
-    function selectProductById($idType,$position=0,$qty=12){
+    function selectProductById($idType,$position=-1,$qty=-1){
         $sql = "SELECT p.*, u.url
                 FROM products p 
                 INNER JOIN page_url u
                 ON p.id_url = u.id
-                WHERE id_type = $idType
-                LIMIT $position,$qty";
+                WHERE id_type = $idType";
+        if($position>=0 && $qty >= 0){
+            $sql .= " LIMIT $position,$qty";
+        }     
         return $this->loadMoreRow($sql);
+    }
+
+    function coutProductByType($idType){
+        $sql = "SELECT count(p.id) as soluong
+                FROM products p 
+                WHERE id_type = $idType";
+        return $this->loadOneRow($sql);
     }
 }
 
