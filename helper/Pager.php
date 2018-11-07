@@ -1,10 +1,10 @@
 <?php 
 class Pager{
-	private $_totalItem;    
-	private $_nItemOnPage;  
-	private $_nPageShow ;
-	private $_totalPage; 
-    private $_currentPage; 
+	private $_totalItem;   //120   
+	private $_nItemOnPage; //12
+	private $_nPageShow ;  //7
+	private $_totalPage;   //10
+    private $_currentPage; //3
     
 	public function __construct($totalItem,$currentPage = 1,$nItemOnPage = 5,$nPageShow = 5){
 		$this->_totalItem 	= $totalItem;
@@ -20,20 +20,22 @@ class Pager{
         $paginationHTML 	= '';
 		if($this->_totalPage > 1){
 			$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-			$actual_link = explode('', $actual_link)[0];
+			// http://localhost/shop2408/phu-kien
+			// http://localhost/shop2408/phu-kien/page/2
+			$actual_link = explode('/page/', $actual_link)[0];
             
 			$start 	= '';
 			$prev 	= '';
 			if($this->_currentPage > 1){
-                $start 	= "<li><a href='$actual_link/1'>Start</a></li>";
-				$prev 	= "<li><a href='$actual_link/".($this->_currentPage-1)."'>«</a></li>";
+                $start 	= "<li><a href='$actual_link/page/1'>Start</a></li>";
+				$prev 	= "<li><a href='$actual_link/page/".($this->_currentPage-1)."'>«</a></li>";
             }
             
 			$next 	= '';
 			$end 	= '';
 			if($this->_currentPage < $this->_totalPage){
-				$next 	= "<li><a href='$actual_link/".($this->_currentPage+1)."'>»</a></li>";
-				$end 	= "<li><a href='$actual_link/".$this->_totalPage."'>End</a></li>";
+				$next 	= "<li><a href='$actual_link/page/".($this->_currentPage+1)."'>»</a></li>";
+				$end 	= "<li><a href='$actual_link/page/".$this->_totalPage."'>End</a></li>";
 			}
 		
 			if($this->_nPageShow < $this->_totalPage){
@@ -54,7 +56,6 @@ class Pager{
 					}
 					if($endPage > $this->_totalPage){
 						$endPage	= $this->_totalPage;
-	
 						$startPage 	= $endPage - $this->_nPageShow + 1;
 					}
 				}
@@ -70,7 +71,7 @@ class Pager{
 					$listPages .= "<li><a  class='active' href='#'>".$i.'</a>';
 				}
 				else{
-					$listPages .= "<li><a href='$actual_link/".$i."'>".$i.'</a>';
+					$listPages .= "<li><a href='$actual_link/page/".$i."'>".$i.'</a>';
 				}
 			}
 			$paginationHTML = '<ul>'.$start.$prev.$listPages.$next.$end.'</ul>';
