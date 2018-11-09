@@ -37,10 +37,13 @@ class TypeProductController extends BaseController{
         $pager = new Pager($totalProduct,$page,$itemPerPage,3);
         $pagination = $pager->showPagination();
 
+        $allType = $model->countProductByType();
+        // print_r($allType);die;
         $data = [
             'type'=>$type,
             'products'=>$products,
-            'pagination'=>$pagination
+            'pagination'=>$pagination,
+            'allType'=>$allType
         ];
         return $this->loadView('type-product',$type->name,$data);
     }

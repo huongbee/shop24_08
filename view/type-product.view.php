@@ -41,28 +41,28 @@
             </div>
             <div class="shop-inner">
               <div class="page-title">
-                <h2><?=$data['type']->name?></h2>
+                <h2><?= $data['type']->name ?></h2>
               </div>
 
               <div class="product-grid-area">
                 <ul class="products-grid">
-                  <?php foreach($data['products'] as $product):?>
+                  <?php foreach ($data['products'] as $product) : ?>
                     <li class="item col-lg-4 col-md-4 col-sm-6 col-xs-6 ">
                       <div class="product-item">
                         <div class="item-inner">
                           <div class="product-thumbnail">
-                            <?php if($product->promotion_price != 0):?>
+                            <?php if ($product->promotion_price != 0) : ?>
                               <div class="icon-sale-label sale-left">Sale</div>
-                            <?php endif?>
-                            <?php if($product->new ==1):?>
+                            <?php endif ?>
+                            <?php if ($product->new == 1) : ?>
                               <div class="icon-new-label new-right">New</div>
-                            <?php endif?>
+                            <?php endif ?>
                             <div class="pr-img-area">
-                                <a title="<?=$product->name?>" 
-                                href="<?=$product->id.'-'.$product->url?>.html">
+                                <a title="<?= $product->name ?>" 
+                                href="<?= $product->id . '-' . $product->url ?>.html">
                                 <figure>
-                                  <img class="first-img" src="public/source/images/products-images/<?=$product->image?>" alt="html template" height="270px">
-                                  <img class="hover-img" src="public/source/images/products-images/<?=$product->image?>" alt="html template">
+                                  <img class="first-img" src="public/source/images/products-images/<?= $product->image ?>" alt="html template" height="270px">
+                                  <img class="hover-img" src="public/source/images/products-images/<?= $product->image ?>" alt="html template">
                                 </figure>
                               </a>
                               <button type="button" class="add-to-cart-mt">
@@ -74,21 +74,21 @@
                           <div class="item-info">
                             <div class="info-inner">
                               <div class="item-title">
-                                <a title="<?=$product->name?>" href="<?=$product->id.'-'.$product->url?>.html"><?=$product->name?></a>
+                                <a title="<?= $product->name ?>" href="<?= $product->id . '-' . $product->url ?>.html"><?= $product->name ?></a>
                               </div>
                               <div class="item-content">
                                 <div class="item-price">
                                   <div class="price-box">
-                                    <?php if($product->promotion_price!=0):?>
+                                    <?php if ($product->promotion_price != 0) : ?>
                                     <p class="special-price">
-                                      <span class="price"> <?=number_format($product->promotion_price)?> </span>
+                                      <span class="price"> <?= number_format($product->promotion_price) ?> </span>
                                     </p>
                                     <p class="old-price">
-                                      <span class="price"> <?=number_format($product->price)?> </span>
+                                      <span class="price"> <?= number_format($product->price) ?> </span>
                                     </p>
-                                    <?php else:?>
+                                    <?php else : ?>
                                     <p class="special-price">
-                                      <span class="price"> <?=number_format($product->price)?> </span>
+                                      <span class="price"> <?= number_format($product->price) ?> </span>
                                     </p>
                                     <?php endif ?>
                                   </div>
@@ -99,11 +99,11 @@
                         </div>
                       </div>
                     </li>
-                  <?php endforeach?>
+                  <?php endforeach ?>
                 </ul>
               </div>
               <div class="pagination-area ">
-                <?=$data['pagination']?>
+                <?= $data['pagination'] ?>
               </div>
             </div>
           </div>
@@ -223,60 +223,19 @@
                 <h3>Shop By</h3>
               </div>
               <div class="block-content">
-                <p class="block-subtitle">Shopping Options</p>
                 <div class="layered-Category">
                   <h2 class="saider-bar-title">Categories</h2>
                   <div class="layered-content">
                     <ul class="check-box-list">
+                      <?php foreach ($data['allType'] as $type) : ?>
                       <li>
-                        <input type="checkbox" id="jtv1" name="jtvc">
-                        <label for="jtv1">
-                          <span class="button"></span> Camera & Photo
-                          <span class="count">(12)</span>
+                        <input type="checkbox" class="input-type" id="type<?= $type->id ?>" name="jtvc">
+                        <label for="type<?= $type->id ?>">
+                          <span class="button"></span> <?= $type->name ?>
+                          <span class="count">(<?= $type->soluong ?>)</span>
                         </label>
                       </li>
-                      <li>
-                        <input type="checkbox" id="jtv2" name="jtvc">
-                        <label for="jtv2">
-                          <span class="button"></span> Computers
-                          <span class="count">(18)</span>
-                        </label>
-                      </li>
-                      <li>
-                        <input type="checkbox" id="jtv3" name="jtvc">
-                        <label for="jtv3">
-                          <span class="button"></span> Apple Store
-                          <span class="count">(15)</span>
-                        </label>
-                      </li>
-                      <li>
-                        <input type="checkbox" id="jtv4" name="jtvc">
-                        <label for="jtv4">
-                          <span class="button"></span> Car Electronic
-                          <span class="count">(03)</span>
-                        </label>
-                      </li>
-                      <li>
-                        <input type="checkbox" id="jtv5" name="jtvc">
-                        <label for="jtv5">
-                          <span class="button"></span> Accessories
-                          <span class="count">(04)</span>
-                        </label>
-                      </li>
-                      <li>
-                        <input type="checkbox" id="jtv7" name="jtvc">
-                        <label for="jtv7">
-                          <span class="button"></span> Game & Video
-                          <span class="count">(07)</span>
-                        </label>
-                      </li>
-                      <li>
-                        <input type="checkbox" id="jtv8" name="jtvc">
-                        <label for="jtv8">
-                          <span class="button"></span> Best selling
-                          <span class="count">(05)</span>
-                        </label>
-                      </li>
+                      <?php endforeach ?>
                     </ul>
                   </div>
                 </div>
@@ -488,3 +447,9 @@
       </div>
     </div>
     <!-- Main Container End -->
+<script type="text/javascript" src="public/source/js/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        
+    })
+</script>

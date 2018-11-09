@@ -42,6 +42,15 @@ class TypeProductModel extends DBConnect{
                 WHERE id_type = $idType";
         return $this->loadOneRow($sql);
     }
+
+    function countProductByType(){
+        $sql = "SELECT c.*, count(p.id) as soluong
+                FROM categories c 
+                INNER JOIN products p
+                ON c.id = p.id_type
+                GROUP BY c.id";
+        return $this->loadMoreRow($sql);
+    }
 }
 
 
