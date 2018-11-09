@@ -50,7 +50,9 @@ class TypeProductController extends BaseController{
 
     function getProductMenuLeft(){
         $idType = $_POST['idType'];
-        
+        $model = new TypeProductModel();
+        $listProduct = $model->selectProductByIdType($idType);
+        print_r($listProduct);
     }
 
     /*
