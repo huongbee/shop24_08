@@ -47,7 +47,13 @@ class TypeProductController extends BaseController{
         ];
         return $this->loadView('type-product',$type->name,$data);
     }
-/*
+
+    function getProductMenuLeft(){
+        $idType = $_POST['idType'];
+        
+    }
+
+    /*
     SELECT p.*, u.url
     FROM products p 
     INNER JOIN page_url u
@@ -60,7 +66,7 @@ class TypeProductController extends BaseController{
     ON p.id_url = u.id
     WHERE id_type = 6
 
-*/
+    */
 }
 
 

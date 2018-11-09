@@ -229,7 +229,7 @@
                     <ul class="check-box-list">
                       <?php foreach ($data['allType'] as $type) : ?>
                       <li>
-                        <input type="checkbox" class="input-type" id="type<?= $type->id ?>" name="jtvc">
+                        <input type="checkbox" class="input-type" id="type<?= $type->id ?>" name="jtvc" data-id="<?=$type->id?>">
                         <label for="type<?= $type->id ?>">
                           <span class="button"></span> <?= $type->name ?>
                           <span class="count">(<?= $type->soluong ?>)</span>
@@ -450,6 +450,25 @@
 <script type="text/javascript" src="public/source/js/jquery.min.js"></script>
 <script>
     $(document).ready(function(){
+        $('.input-type').click(function(){
+            var check = $(this).prop('checked')
+            if(check){
+                var idType = $(this).attr('data-id')
+                $.ajax({
+                    url: '<?=$url?>', //from BaseController
+                    type:'POST',
+                    data: {
+                        idType
+                    },
+                    success:function(res){
+                        console.log(res)
+                    },
+                    error:function(error){
+                        console.log(error)
+                    }
+                })
+            }
+        })
         
     })
 </script>
