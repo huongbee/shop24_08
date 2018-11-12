@@ -52,7 +52,11 @@ class TypeProductController extends BaseController{
         $idType = $_POST['idType'];
         $model = new TypeProductModel();
         $listProduct = $model->selectProductByIdType($idType);
-        print_r($listProduct);
+        //print_r($listProduct);
+        $data = [
+            'products' => $listProduct
+        ];
+        return $this->loadHtmlAjax('type',$data);
     }
 
     /*

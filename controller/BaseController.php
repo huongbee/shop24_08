@@ -20,6 +20,10 @@ class BaseController{
         // print_r($categories);die;
         include_once "view/layout.view.php";
     }
+
+    function loadHtmlAjax($view, $data = []){
+        include_once "view/ajax/$view.view.php";
+    }
 }
 
 ?>
