@@ -452,10 +452,11 @@
 <script type="text/javascript" src="public/source/js/jquery.min.js"></script>
 <script>
     $(document).ready(function(){
+      var oldContent = $('.products-grid').html()
         $('.input-type').click(function(){
             var check = $(this).prop('checked')
+            var idType = $(this).attr('data-id')
             if(check){
-                var idType = $(this).attr('data-id')
                 $.ajax({
                     url: '<?=$url?>', //from BaseController
                     type:'POST',
@@ -475,8 +476,6 @@
                           $('.products-grid').html(res)
                           $('.products-grid').addClass('append')
                         }
-                        
-
                         // $('#shop-inner').html(res)
 
                     },
@@ -484,6 +483,18 @@
                         console.log(error)
                     }
                 })
+            }
+            else{
+              // console.log(idType)
+              $('.type-product-'+idType).remove()
+
+              if($('.append').find('li.item').length==0){
+                $('.page-title').show()
+                $('.pagination-area').show()
+                $('.products-grid').html(oldContent)
+                $('.shop-inner').addClass('shop-inner')
+                $('.append').removeClass('append')
+              }
             }
         })
         
