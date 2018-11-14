@@ -18,7 +18,8 @@ class DetailProductModel extends DBConnect{
                 INNER JOIN page_url u
                 ON p.id_url = u.id
                 WHERE p.id = $id
-                AND url = '$url'";
+                AND url = '$url'
+                AND p.deleted=0";
         return $this->loadOneRow($sql);
     }
 
@@ -31,7 +32,8 @@ class DetailProductModel extends DBConnect{
                 INNER JOIN page_url u
                 ON p.id_url = u.id
                 WHERE id_type = $idType
-                AND p.id <> $idProduct";
+                AND p.id <> $idProduct
+                AND p.deleted=0";
         return $this->loadMoreRow($sql);
     }
 }

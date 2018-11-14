@@ -29,7 +29,8 @@ class TypeProductModel extends DBConnect{
                 FROM products p 
                 INNER JOIN page_url u
                 ON p.id_url = u.id
-                WHERE id_type = $idType";
+                WHERE id_type = $idType
+                AND p.deleted=0";
         if($position>=0 && $qty >= 0){
             $sql .= " LIMIT $position,$qty";
         }     
@@ -39,7 +40,8 @@ class TypeProductModel extends DBConnect{
     function coutProductByType($idType){
         $sql = "SELECT count(p.id) as soluong
                 FROM products p 
-                WHERE id_type = $idType";
+                WHERE id_type = $idType
+                AND p.deleted=0";
         return $this->loadOneRow($sql);
     }
 
@@ -48,6 +50,7 @@ class TypeProductModel extends DBConnect{
                 FROM categories c 
                 INNER JOIN products p
                 ON c.id = p.id_type
+                AND p.deleted=0
                 GROUP BY c.id";
         return $this->loadMoreRow($sql);
     }
@@ -56,7 +59,8 @@ class TypeProductModel extends DBConnect{
                 FROM products p
                 INNER JOIN page_url u
                 ON p.id_url = u.id
-                WHERE id_type = $idType";
+                WHERE id_type = $idType
+                AND p.deleted=0";
         return $this->loadMoreRow($sql);
     }   
 }

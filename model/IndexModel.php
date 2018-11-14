@@ -13,7 +13,8 @@ class IndexModel extends DBConnect{
                 FROM products p 
                 INNER JOIN page_url u
                 ON p.id_url = u.id
-                WHERE p.status=1";
+                WHERE p.status=1
+                AND p.deleted=0";
         return $this->loadMoreRow($sql);
     }
 
@@ -24,6 +25,7 @@ class IndexModel extends DBConnect{
                 ON d.id_product = p.id
                 INNER JOIN page_url u
                 ON p.id_url = u.id
+                AND p.deleted=0
                 GROUP BY id_product
                 ORDER BY total DESC
                 LIMIT 0,10";
