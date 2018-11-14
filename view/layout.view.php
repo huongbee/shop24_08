@@ -455,11 +455,32 @@
 
   </div>
 
-
   <!-- JS -->
 
   <!-- jquery js -->
   <script type="text/javascript" src="public/source/js/jquery.min.js"></script>
+
+
+  <script>
+  $(document).ready(function(){
+    $('.add-to-cart-mt').click(function(){
+      var idSP = $(this).attr('data-id')
+      $.ajax({
+        url:'cart.php',
+        data:{
+          idSP
+        },
+        type: 'POST',
+        success:function(res){
+          console.log(res)
+        },
+        error:function(){
+          console.log('error!!!')
+        }
+      })
+    })
+  })
+  </script>
 
   <!-- bootstrap js -->
   <script type="text/javascript" src="public/source/js/bootstrap.min.js"></script>
