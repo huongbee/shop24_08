@@ -26,7 +26,7 @@ class ShoppingCartController extends BaseController{
         $cart = new Cart($oldCart);
         $cart->add($product,$qty);
         $_SESSION['cart'] = $cart;
-        print_r($_SESSION['cart']);
+        // print_r($_SESSION['cart']);
 
         return [
             'code'=>1,
