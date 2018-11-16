@@ -17,7 +17,7 @@
                 <img class="hover-img" src="public/source/images/products-images/<?= $product->image ?>" alt="html template">
             </figure>
             </a>
-            <button type="button" class="add-to-cart-mt">
+            <button type="button" class="add-to-cart-mt" data-id="<?=$product->id?>">
             <i class="fa fa-shopping-cart"></i>
             <span> Add to Cart</span>
             </button>
@@ -52,3 +52,34 @@
     </div>
 </li>
 <?php endforeach ?>
+
+<style>
+.swal-title{
+    font-size:15px!important
+}
+</style>
+  <!-- jquery js -->
+  <script type="text/javascript" src="public/source/js/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <script>
+  $(document).ready(function(){
+    $('.add-to-cart-mt').click(function(){
+      var idSP = $(this).attr('data-id')
+      $.ajax({
+        url:'cart.php',
+        data:{
+          idSP
+        },
+        type: 'POST',
+        dataType: 'json',
+        success:function(res){
+          swal(res.message,'',"success");
+        },
+        error:function(e){
+          console.log(e)
+        }
+      })
+    })
+  })
+  </script>
