@@ -453,6 +453,21 @@
     <a href="#" class="totop"> </a>
     <!-- End Footer -->
 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body" style="font-size:16px">
+            <p><b class="message">...</b></p>
+            <p><a href="shopping-cart.php">Xem giỏ hàng</a></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- JS -->
@@ -471,11 +486,13 @@
           idSP
         },
         type: 'POST',
+        dataType: 'json',
         success:function(res){
-          console.log(res)
+          $('.message').html(res.message)
+          $('#exampleModal').modal('show')
         },
-        error:function(){
-          console.log('error!!!')
+        error:function(e){
+          console.log(e)
         }
       })
     })

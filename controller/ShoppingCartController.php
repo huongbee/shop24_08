@@ -16,10 +16,10 @@ class ShoppingCartController extends BaseController{
         $model = new ShoppingCartModel;
         $product = $model->findProduct($id);
         if(!$product){
-            return [
+            echo json_encode([
                 'code'=>0,
-                'message'=>'Product not found!'
-            ];
+                'message'=>'Không tìm thấy sản phẩm!'
+            ]);
         }
         $qty = 1;
         $oldCart = isset($_SESSION['cart']) ? $_SESSION['cart'] : null;
@@ -28,10 +28,10 @@ class ShoppingCartController extends BaseController{
         $_SESSION['cart'] = $cart;
         // print_r($_SESSION['cart']);
 
-        return [
+        echo json_encode([
             'code'=>1,
-            'message'=>'Add to cart success!'
-        ];
+            'message'=>'Sản phẩm '.$product->name.' đã được thêm vào giỏ hàng'
+        ]);
 
     }
 }
