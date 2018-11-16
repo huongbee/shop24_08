@@ -56,7 +56,7 @@
                 <div class="cart-plus-minus">
                   <label for="qty">Quantity:</label>
                   <div class="numbers-row">
-                    <div class="dec qtybutton">
+                    <div class="dec qtybutton" onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty) && qty>1) result.value--;return false;">
                       <i class="fa fa-minus">&nbsp;</i>
                     </div>
                     <input type="text" class="qty" title="Qty" value="1" maxlength="12" id="qty" name="qty">
@@ -66,7 +66,7 @@
                     </div>
                   </div>
                 </div>
-                <button class="button pro-add-to-cart" title="Add to Cart" type="button">
+                <button class="button pro-add-to-cart" title="Add to Cart" type="button" data-id=<?=$product->id?>>
                   <span>
                     <i class="fa fa-shopping-cart"></i> Add to Cart</span>
                 </button>
@@ -112,7 +112,7 @@
                           <img class="hover-img" src="public/source/images/products-images/<?=$product->image?>" alt="html template">
                         </figure>
                       </a>
-                      <button type="button" class="add-to-cart-mt">
+                      <button type="button" class="add-to-cart-mt" data-id="<?=$product->id?>">
                         <i class="fa fa-shopping-cart"></i>
                         <span> Add to Cart</span>
                       </button>
@@ -155,3 +155,32 @@
   </div>
 </section>
 <!-- Related Product Slider End -->
+
+<!-- jquery js -->
+<script type="text/javascript" src="public/source/js/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $('.pro-add-to-cart').click(function(){
+    var idSP = $(this).attr('data-id')
+    var qty = $('#qty').val()
+    $.ajax({
+      url:'cart.php',
+      data:{
+        idSP,
+        qty
+      },
+      type: 'POST',
+      dataType: 'json',
+      success:function(res){
+        // console.log(res)
+        $('.cart-total').html(res.data)
+        $('.message').html(res.message)
+        $('#exampleModal').modal('show')
+      },
+      error:function(e){
+        console.log(e)
+      }
+    })
+  })
+})
+</script>

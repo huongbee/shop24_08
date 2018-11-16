@@ -156,7 +156,14 @@
                       </div>
                       <div class="shoppingcart-inner hidden-xs">
                         <span class="cart-title">Shopping Cart</span>
-                        <span class="cart-total">4 Item(s): $520.00</span>
+                        <span class="cart-total"><?php
+                        if(isset($_SESSION['cart'])){
+                          echo $_SESSION['cart']->totalQty?>SP: <?=number_format($_SESSION['cart']->promtPrice);
+                        }
+                        else{
+                          echo 0;
+                        }
+                        ?></span>
                       </div>
                     </a>
                   </div>
@@ -480,6 +487,8 @@
   $(document).ready(function(){
     $('.add-to-cart-mt').click(function(){
       var idSP = $(this).attr('data-id')
+      var qty = $('#qty').val()
+      console.log(qty)
       $.ajax({
         url:'cart.php',
         data:{
@@ -488,6 +497,7 @@
         type: 'POST',
         dataType: 'json',
         success:function(res){
+          $('.cart-total').html(res.data)
           $('.message').html(res.message)
           $('#exampleModal').modal('show')
         },

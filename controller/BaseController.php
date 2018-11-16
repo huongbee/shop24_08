@@ -1,4 +1,6 @@
 <?php
+include_once 'helper/Cart.php';
+session_start();
 include_once 'model/TypeProductModel.php';
 
 class BaseController{

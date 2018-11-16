@@ -74,7 +74,8 @@
         type: 'POST',
         dataType: 'json',
         success:function(res){
-          swal(res.message,'',"success");
+            $('.cart-total').html(res.data)
+            swal(res.message,'',"success");
         },
         error:function(e){
           console.log(e)

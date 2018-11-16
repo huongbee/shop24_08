@@ -21,16 +21,18 @@ class ShoppingCartController extends BaseController{
                 'message'=>'Không tìm thấy sản phẩm!'
             ]);
         }
-        $qty = 1;
+        $qty = isset($_POST['qty']) ? (int) $_POST['qty'] : 1 ;
         $oldCart = isset($_SESSION['cart']) ? $_SESSION['cart'] : null;
         $cart = new Cart($oldCart);
         $cart->add($product,$qty);
         $_SESSION['cart'] = $cart;
+        
         // print_r($_SESSION['cart']);
 
         echo json_encode([
             'code'=>1,
-            'message'=>'Sản phẩm '.$product->name.' đã được thêm vào giỏ hàng'
+            'message'=>'Sản phẩm '.$product->name.' đã được thêm vào giỏ hàng',
+            'data'=> $cart->totalQty. 'SP: '.number_format($cart->promtPrice)
         ]);
 
     }
