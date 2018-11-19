@@ -2,7 +2,7 @@
 include 'BaseController.php';
 include_once 'model/ShoppingCartModel.php';
 include_once 'helper/Cart.php';
-session_start();
+if(!isset($_SESSION)) session_start();
 
 
 class ShoppingCartController extends BaseController{

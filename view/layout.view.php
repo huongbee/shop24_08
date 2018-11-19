@@ -488,7 +488,7 @@
     $('.add-to-cart-mt').click(function(){
       var idSP = $(this).attr('data-id')
       var qty = $('#qty').val()
-      console.log(qty)
+      // console.log(qty)
       $.ajax({
         url:'cart.php',
         data:{
@@ -497,9 +497,9 @@
         type: 'POST',
         dataType: 'json',
         success:function(res){
-          $('.cart-total').html(res.data)
           $('.message').html(res.message)
           $('#exampleModal').modal('show')
+          $('.cart-total').html(res.data)
         },
         error:function(e){
           console.log(e)
