@@ -3,10 +3,22 @@
     <div class="main container">
       <div class="col-main">
         <div class="cart">
-          
-          <div class="page-content page-order"><div class="page-title">
-            <h2>Giỏ hàng của bạn</h2>
+          <?php if($data['cart']==null):?>
+          <div class="page-content page-order">
+            <div class="page-title" style="text-align:center">
+              <h2>Giỏ hàng rỗng</h2>
+              <div class="cart_navigation"> 
+                <a class="continue-btn" href="./">
+                  <i class="fa fa-arrow-left"> </i>&nbsp; Về trang chủ
+                </a>
+              </div>
+            </div>
           </div>
+          <?php else:?>
+          <div class="page-content page-order">
+            <div class="page-title">
+              <h2>Giỏ hàng của bạn</h2>
+            </div>
             
             
             <div class="order-detail-content">
@@ -60,19 +72,20 @@
                   <tfoot>
                     <tr>
                       <td colspan="2" rowspan="2"></td>
-                      <td colspan="3">Total products (tax incl.)</td>
-                      <td colspan="2">$237.88 </td>
+                      <td colspan="3">Tổng tiền</td>
+                      <td colspan="2"><?=number_format($data['cart']->totalPrice)?></td>
                     </tr>
                     <tr>
-                      <td colspan="3"><strong>Total</strong></td>
-                      <td colspan="2"><strong>$237.88 </strong></td>
+                      <td colspan="3"><strong>Thanh toán</strong></td>
+                      <td colspan="2"><strong><?=number_format($data['cart']->promtPrice)?></strong></td>
                     </tr>
                   </tfoot>
                 </table>
               </div>
-              <div class="cart_navigation"> <a class="continue-btn" href="#"><i class="fa fa-arrow-left"> </i>&nbsp; Continue shopping</a> <a class="checkout-btn" href="#"><i class="fa fa-check"></i> Proceed to checkout</a> </div>
+              <div class="cart_navigation"> <a class="continue-btn" href="./"><i class="fa fa-arrow-left"> </i>&nbsp; Tiếp tục mua sắm</a> <a class="checkout-btn" href="checkout.php"><i class="fa fa-check"></i>Thanh toán</a> </div>
             </div>
           </div>
+          <?php endif?>
         </div>
       </div>
     </div>
