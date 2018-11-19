@@ -51,8 +51,8 @@ class Cart{
 		}
 		$giohang = [
 			'qty'=>$qty, 
-			'price' => $item->price, 
-			'discountPrice'=>$item->promotion_price, 
+			'price' => $item->price*$qty, 
+			'discountPrice'=>$item->promotion_price * $qty, 
 			'item' => $item
 		];
 		$id = $item->id;
@@ -67,8 +67,8 @@ class Cart{
 		$giohang['discountPrice'] = $item->promotion_price * $giohang['qty'];
 		$this->items[$id] = $giohang;
 		$this->totalQty = $this->totalQty + $qty;
-		$this->totalPrice = $this->totalPrice + ($giohang['item']->price)*$qty;
-		$this->promtPrice = $this->promtPrice + ($giohang['item']->promotion_price)*$qty;
+		$this->totalPrice = $this->totalPrice + $giohang['price'];
+		$this->promtPrice = $this->promtPrice + $giohang['discountPrice'];
     }
     
 	//xóa 1 so luong

@@ -53,7 +53,7 @@
                         </span>
                       </td>
                       <td class="qty">
-                        <input class="form-control input-sm" type="text" 
+                        <input class="form-control input-sm txtQty" type="text" 
                           value="<?=$item['qty']?>">
                       </td>
                       <td class="price">
@@ -90,3 +90,23 @@
       </div>
     </div>
   </section>
+  <script type="text/javascript" src="public/source/js/jquery.min.js"></script>
+
+
+  <script>
+  $(document).ready(function(){
+
+    var timeout = null;
+
+    $('.txtQty').on('keyup',function () {
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+            // var idSP = $(this).attr('data-id')
+            // var qty = $(this).val()
+            console.log(1234567)
+            
+        },1000);
+    });
+    
+  })
+  </script>
