@@ -35,7 +35,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($data['cart']->items as $item):?>
+                    <?php foreach($data['cart']->items as $id => $item):?>
                     <tr>
                       <td class="cart_product"><a href="#">
                         <img src="public/source/images/products-images/<?=$item['item']->image?>" alt="<?=$item['item']->name?>">
@@ -54,7 +54,7 @@
                       </td>
                       <td class="qty">
                         <input class="form-control input-sm txtQty" type="text" 
-                          value="<?=$item['qty']?>">
+                          value="<?=$item['qty']?>" data-id="<?=$id?>">
                       </td>
                       <td class="price">
                       <del style="color:dimgrey">
@@ -91,19 +91,18 @@
     </div>
   </section>
   <script type="text/javascript" src="public/source/js/jquery.min.js"></script>
-
-
   <script>
   $(document).ready(function(){
 
     var timeout = null;
 
     $('.txtQty').on('keyup',function () {
+        var qty = $(this).val()
+        var idSP = $(this).attr('data-id')
+
         clearTimeout(timeout);
         timeout = setTimeout(function () {
-            // var idSP = $(this).attr('data-id')
-            // var qty = $(this).val()
-            console.log(1234567)
+            console.log(qty, idSP)
             
         },1000);
     });
