@@ -8,7 +8,13 @@ if(!isset($_SESSION)) session_start();
 class ShoppingCartController extends BaseController{
 
     function getShoppingCart(){
-        return $this->loadView('shopping-cart');
+        $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : null;
+        // print_r($cart);
+        // die;
+        $data = [
+            'cart'=>$cart
+        ];
+        return $this->loadView('shopping-cart','Giỏ hàng',$data);
     }
 
     function addToCart(){

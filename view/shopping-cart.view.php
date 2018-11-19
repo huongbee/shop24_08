@@ -5,7 +5,7 @@
         <div class="cart">
           
           <div class="page-content page-order"><div class="page-title">
-            <h2>Shopping Cart</h2>
+            <h2>Giỏ hàng của bạn</h2>
           </div>
             
             
@@ -14,49 +14,48 @@
                 <table class="table table-bordered cart_summary">
                   <thead>
                     <tr>
-                      <th class="cart_product">Product</th>
-                      <th>Description</th>
-                      <th>Avail.</th>
-                      <th>Unit price</th>
-                      <th>Qty</th>
-                      <th>Total</th>
+                      <th class="cart_product">Hình ảnh</th>
+                      <th>Tên Sản phẩm</th>
+                      <th>Đơn giá</th>
+                      <th>Số lượng</th>
+                      <th>Tổng tiền</th>
                       <th  class="action"><i class="fa fa-trash-o"></i></th>
                     </tr>
                   </thead>
                   <tbody>
+                    <?php foreach($data['cart']->items as $item):?>
                     <tr>
-                      <td class="cart_product"><a href="#"><img src="public/source/images/products/img01.jpg" alt="Product"></a></td>
-                      <td class="cart_description"><p class="product-name"><a href="#">Ipsums Dolors Untra </a></p>
-                        <small><a href="#">Color : Red</a></small><br>
-                        <small><a href="#">Size : M</a></small></td>
-                      <td class="availability in-stock"><span class="label">In stock</span></td>
-                      <td class="price"><span>$49.88</span></td>
-                      <td class="qty"><input class="form-control input-sm" type="text" value="1"></td>
-                      <td class="price"><span>$49.88</span></td>
+                      <td class="cart_product"><a href="#">
+                        <img src="public/source/images/products-images/<?=$item['item']->image?>" alt="<?=$item['item']->name?>">
+                      </a></td>
+                      <td class="cart_description"><p class="product-name">
+                        <a href="#"><?=$item['item']->name?></a></p>
+                      </td>
+                      <td class="price">
+                        <del style="color:dimgrey">
+                        <?=number_format($item['item']->price)?>
+                        </del>
+                        <br>
+                        <span>
+                          <?=number_format($item['item']->promotion_price)?>
+                        </span>
+                      </td>
+                      <td class="qty">
+                        <input class="form-control input-sm" type="text" 
+                          value="<?=$item['qty']?>">
+                      </td>
+                      <td class="price">
+                      <del style="color:dimgrey">
+                        <?=number_format($item['price'])?>
+                        </del>
+                        <br>
+                        <span>
+                          <?=number_format($item['discountPrice'])?>
+                        </span>
+                      </td>
                       <td class="action"><a href="#"><i class="icon-close"></i></a></td>
                     </tr>
-                    <tr>
-                      <td class="cart_product"><a href="#"><img src="public/source/images/products/img02.jpg" alt="Product"></a></td>
-                      <td class="cart_description"><p class="product-name"><a href="#">Ipsums Dolors Untra </a></p>
-                        <small><a href="#">Color : Green</a></small><br>
-                        <small><a href="#">Size : XL</a></small></td>
-                      <td class="availability out-of-stock"><span class="label">No stock</span></td>
-                      <td class="price"><span>$00.00</span></td>
-                      <td class="qty"><input class="form-control input-sm" type="text" value="0"></td>
-                      <td class="price"><span>00.00</span></td>
-                      <td class="action"><a href="#"><i class="icon-close"></i></a></td>
-                    </tr>
-                    <tr>
-                      <td class="cart_product"><a href="#"><img src="public/source/images/products/img03.jpg" alt="Product"></a></td>
-                      <td class="cart_description"><p class="product-name"><a href="#">Ipsums Dolors Untra </a></p>
-                        <small><a href="#">Color : Blue</a></small><br>
-                        <small><a href="#">Size : S</a></small></td>
-                      <td class="availability in-stock"><span class="label">In stock</span></td>
-                      <td class="price"><span>$99.00</span></td>
-                      <td class="qty"><input class="form-control input-sm" type="text" value="2"></td>
-                      <td class="price"><span>$188.00</span></td>
-                      <td class="action"><a href="#"><i class="icon-close"></i></a></td>
-                    </tr>
+                    <?php endforeach?>
                   </tbody>
                   <tfoot>
                     <tr>
