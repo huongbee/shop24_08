@@ -56,9 +56,9 @@
                         <input class="form-control input-sm txtQty" type="text" 
                           value="<?=$item['qty']?>" data-id="<?=$id?>">
                       </td>
-                      <td class="price">
-                      <del style="color:dimgrey">
-                        <?=number_format($item['price'])?>
+                      <td class="price price-change-<?=$id?>">
+                        <del style="color:dimgrey">
+                          <?=number_format($item['price'])?>
                         </del>
                         <br>
                         <span>
@@ -73,11 +73,11 @@
                     <tr>
                       <td colspan="2" rowspan="2"></td>
                       <td colspan="3">Tổng tiền</td>
-                      <td colspan="2"><?=number_format($data['cart']->totalPrice)?></td>
+                      <td colspan="2" id="totalPrice"><?=number_format($data['cart']->totalPrice)?></td>
                     </tr>
                     <tr>
                       <td colspan="3"><strong>Thanh toán</strong></td>
-                      <td colspan="2"><strong><?=number_format($data['cart']->promtPrice)?></strong></td>
+                      <td colspan="2"><strong id="promtPrice"><?=number_format($data['cart']->promtPrice)?></strong></td>
                     </tr>
                   </tfoot>
                 </table>
@@ -98,11 +98,46 @@
 
     $('.txtQty').on('keyup',function () {
         var qty = $(this).val()
+        if(isNaN(qty)){
+          alert('Vui lòng nhập số')
+          $(this).val(1)
+          $(this).focus()
+          return false;
+        }
+        if( parseInt(qty)===0 ) {
+          alert('Vui lòng nhập số lượng > 0')
+          $(this).val(1)
+          $(this).focus()
+          return false;
+        }
+        if( qty=='') {
+          $(this).focus()
+          return false;
+        }
         var idSP = $(this).attr('data-id')
 
         clearTimeout(timeout);
         timeout = setTimeout(function () {
-            console.log(qty, idSP)
+            $.ajax({
+              url:'cart.php',
+              data:{
+                idSP:idSP,
+                qty:qty,
+                action:'update'
+              },
+              type:'POST',
+              dataType:"json",
+              success:function(res){
+                $('.cart-total').html(res.data.cart_header)
+                $('#totalPrice').html(res.data.totalPrice)
+                $('#promtPrice').html(res.data.promtPrice)
+                $('.price-change-'+idSP+' del').html(res.data.price)
+                $('.price-change-'+idSP+' span').html(res.data.discountPrice)
+              },
+              error:function(){
+                console.log('err')
+              }
+            })
             
         },1000);
     });
