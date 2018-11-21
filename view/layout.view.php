@@ -149,8 +149,8 @@
             <div class="col-lg-3 col-xs-3 top-cart">
               <div class="top-cart-contain">
                 <div class="mini-cart">
-                  <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle">
-                    <a href="#">
+                  <div  class="basket dropdown-toggle">
+                    <a href="gio-hang">
                       <div class="cart-icon">
                         <i class="fa fa-shopping-cart"></i>
                       </div>

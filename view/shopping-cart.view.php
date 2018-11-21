@@ -36,7 +36,7 @@
                   </thead>
                   <tbody>
                     <?php foreach($data['cart']->items as $id => $item):?>
-                    <tr>
+                    <tr id="cart-remove-<?=$id?>">
                       <td class="cart_product"><a href="#">
                         <img src="public/source/images/products-images/<?=$item['item']->image?>" alt="<?=$item['item']->name?>">
                       </a></td>
@@ -65,7 +65,9 @@
                           <?=number_format($item['discountPrice'])?>
                         </span>
                       </td>
-                      <td class="action"><a href="#"><i class="icon-close"></i></a></td>
+                      <td class="action">
+                        <a data-id="<?=$id?>"><i class="icon-close"></i></a>
+                      </td>
                     </tr>
                     <?php endforeach?>
                   </tbody>
@@ -141,6 +143,29 @@
             
         },1000);
     });
+
+
+    $('.action a').click(function(){
+      var idSP = $(this).attr('data-id')
+      $.ajax({
+        url:'cart.php',
+        data:{
+          idSP:idSP,
+          action:'delete'
+        },
+        type:'POST',
+        dataType:"json",
+        success:function(res){
+          $('#cart-remove-'+idSP).hide(500)
+          $('.cart-total').html(res.data.cart_header)
+          $('#totalPrice').html(res.data.totalPrice)
+          $('#promtPrice').html(res.data.promtPrice)
+        },
+        error:function(){
+          console.log('err')
+        }
+      })
+    })
     
   })
   </script>

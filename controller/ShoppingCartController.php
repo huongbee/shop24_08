@@ -70,6 +70,22 @@ class ShoppingCartController extends BaseController{
             ]
         ]);
     }
+    function deleteCart(){
+        $id = $_POST['idSP'];
+        $oldCart = isset($_SESSION['cart']) ? $_SESSION['cart'] : null;
+        $cart = new Cart($oldCart);
+        $cart->removeItem($id);
+        $_SESSION['cart'] = $cart;
+        echo json_encode([
+            'code'=>1,
+            'message'=>'',
+            'data'=> [
+                'cart_header'=>$cart->totalQty. 'SP: '.number_format($cart->promtPrice),
+                'totalPrice'=> number_format($cart->totalPrice),
+                'promtPrice'=>number_format($cart->promtPrice)
+            ]
+        ]);
+    }
 }
 
 
