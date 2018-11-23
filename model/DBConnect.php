@@ -20,6 +20,9 @@ class DBConnect{
         $sttm = $this->db->prepare($sql);
         return $sttm->execute($data);
     }
+    function getLastId(){
+        return $this->db->lastInsertId();
+    }
 
     //for SELECT 1 row
     function loadOneRow($sql,$data=[]){
