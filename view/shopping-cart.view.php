@@ -84,7 +84,7 @@
                   </tfoot>
                 </table>
               </div>
-              <div class="cart_navigation"> <a class="continue-btn" href="./"><i class="fa fa-arrow-left"> </i>&nbsp; Tiếp tục mua sắm</a> <a class="checkout-btn" href="checkout.php"><i class="fa fa-check"></i>Thanh toán</a> </div>
+              <div class="cart_navigation"> <a class="continue-btn" href="./"><i class="fa fa-arrow-left"> </i>&nbsp; Tiếp tục mua sắm</a> <a class="checkout-btn" href="dat-hang"><i class="fa fa-check"></i>Thanh toán</a> </div>
             </div>
           </div>
           <?php endif?>

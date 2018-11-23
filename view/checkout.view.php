@@ -7,7 +7,7 @@
           <h2>Thanh toán</h2>
         </div>
             <div class="box-border">
-                <form action="" method="POST">
+                <form action="dat-hang" method="POST">
                     <ul>
                         <li class="row">
                             <div class="col-sm-6">
@@ -52,7 +52,7 @@
                             </div><!--/ [col] -->
                         </li>
                         <li>
-                            <button class="button" type="submit"><i class="fa fa-angle-double-right"></i>&nbsp; <span>Đặt hàng</span></button>
+                            <button class="button" type="submit" name="btnCheckout"><i class="fa fa-angle-double-right"></i>&nbsp; <span>Đặt hàng</span></button>
                         </li>
                     </ul>
                 </form>

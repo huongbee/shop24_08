@@ -2,6 +2,7 @@
 include 'controller/CheckoutController.php';
 
 $c = new CheckoutController;
-return $c->getCheckoutPage();
+
+return $_SERVER['REQUEST_METHOD'] == 'POST' ? $c->postCheckout() : $c->getCheckoutPage();
 
 ?>
