@@ -8,6 +8,8 @@ class BaseController{
     private $domain = null;
     private $url = null;
     function __construct(){
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        
         $this->domain = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST']; //http://localhost
 
         $this->url = $this->domain.$_SERVER['REQUEST_URI'];

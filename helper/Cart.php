@@ -3,9 +3,9 @@
 class Cart{
 
 	public $items = []; 
-	public $totalQty = 0;	 //2
-	public $totalPrice = 0; //20 -> 15
-	public $promtPrice = 0; //40
+	public $totalQty = 0;	 
+	public $totalPrice = 0;
+	public $promtPrice = 0; 
 
 	public function __construct($oldCart=null){
 		if($oldCart){
