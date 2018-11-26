@@ -29,7 +29,7 @@ class CheckoutController extends BaseController{
             $total = $cart->totalPrice;
             $promtPrice = $cart->promtPrice;
             $tokenDate = $dateOrder;
-            $token = '';
+            $token = strRandom();
             $idBill = insertBill($idCustomer,$dateOrder, $total, $promtPrice, $paymentMethod, $note, $token, $tokenDate);
 
         }
