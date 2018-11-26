@@ -2,6 +2,7 @@
 include 'BaseController.php';
 include_once 'model/CheckoutModel.php';
 include_once 'helper/Cart.php';
+include_once 'helper/functions.php';
 !isset($_SESSION) ? session_start() : '';
 
 class CheckoutController extends BaseController{
@@ -28,10 +29,33 @@ class CheckoutController extends BaseController{
             $cart = new Cart($oldCart);
             $total = $cart->totalPrice;
             $promtPrice = $cart->promtPrice;
-            $tokenDate = $dateOrder;
             $token = strRandom();
-            $idBill = insertBill($idCustomer,$dateOrder, $total, $promtPrice, $paymentMethod, $note, $token, $tokenDate);
+            $tokenDate = $dateOrder;
+            $idBill = $model->insertBill($idCustomer,$dateOrder, $total, $promtPrice, $paymentMethod, $note, $token, $tokenDate);
+            if($idBill){
+                // insert bill detail
+                foreach($cart->items as $idProduct=>$item){
+                    $quantity = $item['qty'];
+                    $price = $item['price'];
+                    $discountPrice = $item['discountPrice'];
+                    $check = $model->insertBillDetail($idBill,$idProduct,$quantity,$price, $discountPrice);
+                    if($check==false){
+                        $model->delBillDetail($idBill);
+                        $model->delBill($idBill);
+                        $model->delCustomer($idCustomer);
+                    }
+                }
+                $_SESSION['success'] = 'Đặt hàng thành công, thông tin đơn hàng được gửi về email, vui lòng kiểm tra email để xác nhận DH';
 
+                unset($_SESSION['cart']);
+                
+                //send mail
+
+            }
+            else{
+                $model->delCustomer($idCustomer);
+                $_SESSION['error'] = 'Có lỗi xảy ra. Vui lòng thử lại';
+            }
         }
         else{
             $_SESSION['error'] = 'Có lỗi xảy ra. Vui lòng thử lại';
