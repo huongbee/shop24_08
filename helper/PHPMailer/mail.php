@@ -1,7 +1,7 @@
 <?php
 require 'src/PHPMailer.php';
 /**
- * Send a content to $email
+ * Send a message to $email
  * @param string @email
  * @param string @name
  * @param string @subject

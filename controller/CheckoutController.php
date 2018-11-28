@@ -3,6 +3,7 @@ include 'BaseController.php';
 include_once 'model/CheckoutModel.php';
 include_once 'helper/Cart.php';
 include_once 'helper/functions.php';
+include_once 'helper/PHPMailer/mail.php';
 !isset($_SESSION) ? session_start() : '';
 
 class CheckoutController extends BaseController{
@@ -50,7 +51,13 @@ class CheckoutController extends BaseController{
                 unset($_SESSION['cart']);
                 
                 //send mail
-
+                $link = "http://localhost/shop2408/order/$token";
+                $subject = "Đặt hàng thành công - Xác nhận đơn hàng DH000$idBill";
+                $message = "<p>Đặt hàng thành công</p>
+                <p>Tổng tiền đơn hàng là: ".number_format($promtPrice)."vnd</p>
+                <p>Vui lòng nhấp vào <a href='$link'>đây</a> để xác nhận đơn hàng</p>
+                <p>Thanks and Best Regard!</p>";
+                sendMail($email,$fullname,$subject,$message);
             }
             else{
                 $model->delCustomer($idCustomer);
