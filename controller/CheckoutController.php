@@ -52,10 +52,13 @@ class CheckoutController extends BaseController{
                 
                 //send mail
                 $link = "http://localhost/shop2408/order/$token";
+                $linkCancel = "http://localhost/shop2408/order-cancel/$token";
+
                 $subject = "Đặt hàng thành công - Xác nhận đơn hàng DH000$idBill";
                 $message = "<p>Đặt hàng thành công</p>
                 <p>Tổng tiền đơn hàng là: ".number_format($promtPrice)."vnd</p>
                 <p>Vui lòng nhấp vào <a href='$link'>đây</a> để xác nhận đơn hàng</p>
+                <p>Để huỷ đơn hàng, bạn chọn vào <a href='$linkCancel'>đây</a> để huỷ</p>
                 <p>Thanks and Best Regard!</p>";
                 sendMail($email,$fullname,$subject,$message);
             }

@@ -38,43 +38,43 @@
                         <li class="row">
                             <div class="col-sm-6">
                                 <label for="first_name" class="required">Họ tên</label>
-                                <input type="text" class="input form-control" name="fullname">
+                                <input type="text" class="input form-control" name="fullname" required>
                             </div><!--/ [col] -->
                             <div class="col-sm-6">
                                 <label class="required">Giới tính</label>
                                 <br>
                                 <label>
-                                    <input type="radio" class="input" name="gender" value="Nam"> Nam
+                                    <input type="radio" class="input" name="gender" value="Nam" required> Nam
                                 </label>
                                 <label style="margin-left:20px">
-                                    <input type="radio" class="input" name="gender" value="Nữ"> Nữ
+                                    <input type="radio" class="input" name="gender" value="Nữ" required> Nữ
                                 </label>
                                 <label style="margin-left:20px">
-                                    <input type="radio" class="input" name="gender" value="Khác"> Khác
+                                    <input type="radio" class="input" name="gender" value="Khác" required> Khác
                                 </label>
                             </div><!--/ [col] -->
                         </li><!--/ .row -->
                         <li class="row">
                             <div class="col-sm-6">
                                 <label for="email_address" class="required">Email Address</label>
-                                <input type="text" class="input form-control" name="email" id="email_address">
+                                <input type="text" class="input form-control" name="email" id="email_address" required>
                             </div><!--/ [col] -->
                             <div class="col-sm-6">
                                 <label for="telephone" class="required">Điện thoại</label>
-                                <input class="input form-control" type="text" name="phone" id="telephone">
+                                <input class="input form-control" type="text" name="phone" id="telephone" required>
                             </div><!--/ [col] -->
                         </li>
                         <li class="row"> 
                             <div class="col-sm-12">
                                 <label for="address" class="required">Địa chỉ</label>
-                                <input type="text" class="input form-control" name="address" id="address">
+                                <input type="text" class="input form-control" name="address" id="address" required>
                             </div><!--/ [col] -->
                             
                         </li><!-- / .row -->
                         <li class="row">
                             <div class="col-sm-12">
                                 <label for="payment" class="required">Hình thức thanh toán</label>
-                                <select name="payment_method" id="payment" class="form-control">
+                                <select name="payment_method" id="payment" class="form-control" required>
                                     <option value="COD">Giao hàng nhận tiền</option>
                                     <option value="Chuyển khoản">Chuyển khoản </option>
 
