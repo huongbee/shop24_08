@@ -8,8 +8,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <![endif]-->
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title><?=$title?></title>
-  <base href="<?=$domain?>/shop2408/">
+  <title><?= $title ?></title>
+  <base href="<?= $domain ?>/shop2408/">
   <meta name="description" content="best template, template free, responsive theme, fashion store, responsive theme, responsive html theme, Premium website templates, web templates, Multi-Purpose Responsive HTML5 Template">
   <meta name="keywords" content="bootstrap, ecommerce, fashion, layout, responsive, responsive template, responsive template download, responsive theme, retail, shop, shopping, store, Premium website templates, web templates, Multi-Purpose Responsive HTML5 Template"
   />
@@ -157,13 +157,12 @@
                       <div class="shoppingcart-inner hidden-xs">
                         <span class="cart-title">Shopping Cart</span>
                         <span class="cart-total"><?php
-                        if(isset($_SESSION['cart'])){
-                          echo $_SESSION['cart']->totalQty?>SP: <?=number_format($_SESSION['cart']->promtPrice);
-                        }
-                        else{
-                          echo 0;
-                        }
-                        ?></span>
+                                                if (isset($_SESSION['cart'])) {
+                                                  echo $_SESSION['cart']->totalQty ?>SP: <?= number_format($_SESSION['cart']->promtPrice);
+                                                              } else {
+                                                                echo 0;
+                                                              }
+                                                              ?></span>
                       </div>
                     </a>
                   </div>
@@ -195,12 +194,12 @@
                 </div>
                 <div class="mega-menu-category">
                   <ul class="nav">
-                    <?php foreach($categories as $item):?>
+                    <?php foreach ($categories as $item) : ?>
                     <li class="nosub">
-                      <a href="<?=$item->url?>">
-                        <i class="icon fa <?=$item->icon?>"></i> <?=$item->name?></a>
+                      <a href="<?= $item->url ?>">
+                        <i class="icon fa <?= $item->icon ?>"></i> <?= $item->name ?></a>
                     </li>
-                    <?php endforeach?>
+                    <?php endforeach ?>
                   </ul>
                 </div>
               </div>
@@ -507,6 +506,33 @@
       })
     })
   })
+  </script>
+  
+  <script type="text/javascript" src="public/source/js/bootstrap-notify.min.js"></script>
+  <script>
+    var message = "<?=isset($_SESSION['success'])?$_SESSION['success']:''?>"
+    if(message!=''){
+      $.notify({
+        message: message
+        },{
+        type: 'success',
+        placement: {
+          from: "top",
+          align: "right"
+        },
+      });
+      message = "<?php unset($_SESSION['success'])?>"
+    }
+    var error = "<?=isset($_SESSION['error'])?$_SESSION['error']:''?>"
+    if(error!=''){
+      $.notify({
+        message: error
+        },{
+        type: 'danger'
+      });
+      error = "<?php unset($_SESSION['error'])?>"
+    }
+  
   </script>
 
   <!-- bootstrap js -->

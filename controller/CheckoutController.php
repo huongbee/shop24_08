@@ -49,8 +49,7 @@ class CheckoutController extends BaseController{
                         $model->delCustomer($idCustomer);
                     }
                 }
-                $_SESSION['success'] = 'Đặt hàng thành công, thông tin đơn hàng được gửi về email, vui lòng kiểm tra email để xác nhận DH';
-
+                
                 unset($_SESSION['cart']);
                 
                 //send mail
@@ -64,6 +63,10 @@ class CheckoutController extends BaseController{
                 <p>Để huỷ đơn hàng, bạn chọn vào <a href='$linkCancel'>đây</a> để huỷ</p>
                 <p>Thanks and Best Regard!</p>";
                 sendMail($email,$fullname,$subject,$message);
+                
+                $_SESSION['success'] = 'Đặt hàng thành công, thông tin đơn hàng được gửi về email, vui lòng kiểm tra email để xác nhận DH';
+                header('Location:http://localhost/shop2408/trang-chu');
+                return;
             }
             else{
                 $model->delCustomer($idCustomer);
@@ -78,7 +81,7 @@ class CheckoutController extends BaseController{
     }
 
     function confirmOrder(){
-        $token = trim($_GET['token']);
+        $token = trim($_GET['token']); 
         if($token==''){
             $_SESSION['error'] = 'Liên kết bạn nhập vào không hợp lệ, vui lòng thử lại';
             header('Location:http://localhost/shop2408/404.html');
