@@ -43,6 +43,19 @@ class CheckoutModel extends DBConnect{
         $sql = "DELETE FROM bill_detail WHERE id_bill=$idBill";
         return $this->executeQuery($sql);
     }
+
+    function findBillByToken($token){
+        $sql = "SELECT * FROM bills WHERE token='$token' AND status=0";
+        return $this->loadOneRow($sql);
+    }
+    function updateStatusBill($idBill){
+        $sql = "UPDATE bills 
+                SET status=1,
+                token = null,
+                token_date = null 
+                WHERE id=$idBill";
+        return $this->executeQuery($sql);
+    }
 }
 
 

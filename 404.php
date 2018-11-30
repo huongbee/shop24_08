@@ -7,6 +7,15 @@
     <title>404 Not found!</title>
 </head>
 <body>
+    <div>
+    <?php
+    session_start();
+    if(isset($_SESSION['error'])){
+        echo $_SESSION['error'];
+        unset($_SESSION['error']);
+    }
+    ?>
+    </div>
     <h2>404 Not Found!!</h2>
 </body>
 </html>
